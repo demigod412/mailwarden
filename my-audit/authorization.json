@@ -1,0 +1,1134 @@
+{
+  "authorizations": [
+    {
+      "domain": "example.com",
+      "customer_id": "C0xxxxxxx",
+      "authorized": true,
+      "expires_on": "2099-12-31",
+      "contact": "it-admin@example.com",
+      "approved_ips": [
+        "203.0.113.0/28"
+      ]
+    },
+    {
+      "domain": "crcproperty.com",
+      "customer_id": "SELF",
+      "authorized": true,
+      "expires_on": "2027-10-11",
+      "contact": "",
+      "approved_ips": []
+    },
+    {
+      "domain": "1stclassagents.com",
+      "customer_id": "SELF",
+      "authorized": true,
+      "expires_on": "2027-10-11",
+      "contact": "",
+      "approved_ips": []
+    },
+    {
+      "domain": "hiranandani.net",
+      "customer_id": "SELF",
+      "authorized": true,
+      "expires_on": "2027-10-11",
+      "contact": "",
+      "approved_ips": []
+    },
+    {
+      "domain": "irvmat.com",
+      "customer_id": "SELF",
+      "authorized": true,
+      "expires_on": "2027-10-11",
+      "contact": "",
+      "approved_ips": []
+    },
+    {
+      "domain": "foxter.com.br",
+      "customer_id": "SELF",
+      "authorized": true,
+      "expires_on": "2027-10-11",
+      "contact": "",
+      "approved_ips": []
+    },
+    {
+      "domain": "egopharm.com",
+      "customer_id": "SELF",
+      "authorized": true,
+      "expires_on": "2027-10-11",
+      "contact": "",
+      "approved_ips": []
+    },
+    {
+      "domain": "landmarkglobal.com",
+      "customer_id": "SELF",
+      "authorized": true,
+      "expires_on": "2027-10-11",
+      "contact": "",
+      "approved_ips": []
+    },
+    {
+      "domain": "captainsteel.com",
+      "customer_id": "SELF",
+      "authorized": true,
+      "expires_on": "2027-10-11",
+      "contact": "",
+      "approved_ips": []
+    },
+    {
+      "domain": "project-lithium.com",
+      "customer_id": "SELF",
+      "authorized": true,
+      "expires_on": "2027-10-11",
+      "contact": "",
+      "approved_ips": []
+    },
+    {
+      "domain": "genetics-pharmaceuticals.com",
+      "customer_id": "SELF",
+      "authorized": true,
+      "expires_on": "2027-10-11",
+      "contact": "",
+      "approved_ips": []
+    },
+    {
+      "domain": "incor.in",
+      "customer_id": "SELF",
+      "authorized": true,
+      "expires_on": "2027-10-11",
+      "contact": "",
+      "approved_ips": []
+    },
+    {
+      "domain": "garlandco.com",
+      "customer_id": "SELF",
+      "authorized": true,
+      "expires_on": "2027-10-11",
+      "contact": "",
+      "approved_ips": []
+    },
+    {
+      "domain": "strandls.com",
+      "customer_id": "SELF",
+      "authorized": true,
+      "expires_on": "2027-10-11",
+      "contact": "",
+      "approved_ips": []
+    },
+    {
+      "domain": "theguardiansindia.com",
+      "customer_id": "SELF",
+      "authorized": true,
+      "expires_on": "2027-10-11",
+      "contact": "",
+      "approved_ips": []
+    },
+    {
+      "domain": "alliebeth.com",
+      "customer_id": "SELF",
+      "authorized": true,
+      "expires_on": "2027-10-11",
+      "contact": "",
+      "approved_ips": []
+    },
+    {
+      "domain": "starcement.co.in",
+      "customer_id": "SELF",
+      "authorized": true,
+      "expires_on": "2027-10-11",
+      "contact": "",
+      "approved_ips": []
+    },
+    {
+      "domain": "aenu.com",
+      "customer_id": "SELF",
+      "authorized": true,
+      "expires_on": "2027-10-11",
+      "contact": "",
+      "approved_ips": []
+    },
+    {
+      "domain": "cloudkitchens.com",
+      "customer_id": "SELF",
+      "authorized": true,
+      "expires_on": "2027-10-11",
+      "contact": "",
+      "approved_ips": []
+    },
+    {
+      "domain": "actiontesa.com",
+      "customer_id": "SELF",
+      "authorized": true,
+      "expires_on": "2027-10-11",
+      "contact": "",
+      "approved_ips": []
+    },
+    {
+      "domain": "orchard.com",
+      "customer_id": "SELF",
+      "authorized": true,
+      "expires_on": "2027-10-11",
+      "contact": "",
+      "approved_ips": []
+    },
+    {
+      "domain": "euro-group.it",
+      "customer_id": "SELF",
+      "authorized": true,
+      "expires_on": "2027-10-11",
+      "contact": "",
+      "approved_ips": []
+    },
+    {
+      "domain": "23andme.com",
+      "customer_id": "SELF",
+      "authorized": true,
+      "expires_on": "2027-10-11",
+      "contact": "",
+      "approved_ips": []
+    },
+    {
+      "domain": "consultan.com",
+      "customer_id": "SELF",
+      "authorized": true,
+      "expires_on": "2027-10-11",
+      "contact": "",
+      "approved_ips": []
+    },
+    {
+      "domain": "propshop.org.in",
+      "customer_id": "SELF",
+      "authorized": true,
+      "expires_on": "2027-10-11",
+      "contact": "",
+      "approved_ips": []
+    },
+    {
+      "domain": "fiorde.com.br",
+      "customer_id": "SELF",
+      "authorized": true,
+      "expires_on": "2027-10-11",
+      "contact": "",
+      "approved_ips": []
+    },
+    {
+      "domain": "nkr.co.za",
+      "customer_id": "SELF",
+      "authorized": true,
+      "expires_on": "2027-10-11",
+      "contact": "",
+      "approved_ips": []
+    },
+    {
+      "domain": "sp8.sosnowiec.pl",
+      "customer_id": "SELF",
+      "authorized": true,
+      "expires_on": "2027-10-11",
+      "contact": "",
+      "approved_ips": []
+    },
+    {
+      "domain": "o.ieeam.com",
+      "customer_id": "SELF",
+      "authorized": true,
+      "expires_on": "2027-10-11",
+      "contact": "",
+      "approved_ips": []
+    },
+    {
+      "domain": "etud.lycee-mermoz.net",
+      "customer_id": "SELF",
+      "authorized": true,
+      "expires_on": "2027-10-11",
+      "contact": "",
+      "approved_ips": []
+    },
+    {
+      "domain": "altstrategies.net",
+      "customer_id": "SELF",
+      "authorized": true,
+      "expires_on": "2027-10-11",
+      "contact": "",
+      "approved_ips": []
+    },
+    {
+      "domain": "zmgps.org.mk",
+      "customer_id": "SELF",
+      "authorized": true,
+      "expires_on": "2027-10-11",
+      "contact": "",
+      "approved_ips": []
+    },
+    {
+      "domain": "ocsenyiskola.hu",
+      "customer_id": "SELF",
+      "authorized": true,
+      "expires_on": "2027-10-11",
+      "contact": "",
+      "approved_ips": []
+    },
+    {
+      "domain": "sinodovaledoitajai.com.br",
+      "customer_id": "SELF",
+      "authorized": true,
+      "expires_on": "2027-10-11",
+      "contact": "",
+      "approved_ips": []
+    },
+    {
+      "domain": "csfa-luanda.com",
+      "customer_id": "SELF",
+      "authorized": true,
+      "expires_on": "2027-10-11",
+      "contact": "",
+      "approved_ips": []
+    },
+    {
+      "domain": "cvcs.it",
+      "customer_id": "SELF",
+      "authorized": true,
+      "expires_on": "2027-10-11",
+      "contact": "",
+      "approved_ips": []
+    },
+    {
+      "domain": "scol.ac.in",
+      "customer_id": "SELF",
+      "authorized": true,
+      "expires_on": "2027-10-11",
+      "contact": "",
+      "approved_ips": []
+    },
+    {
+      "domain": "bilkoleji.k12.tr",
+      "customer_id": "SELF",
+      "authorized": true,
+      "expires_on": "2027-10-11",
+      "contact": "",
+      "approved_ips": []
+    },
+    {
+      "domain": "sekolahglobalmandiri.sch.id",
+      "customer_id": "SELF",
+      "authorized": true,
+      "expires_on": "2027-10-11",
+      "contact": "",
+      "approved_ips": []
+    },
+    {
+      "domain": "armbb.be",
+      "customer_id": "SELF",
+      "authorized": true,
+      "expires_on": "2027-10-11",
+      "contact": "",
+      "approved_ips": []
+    },
+    {
+      "domain": "riskinder.org",
+      "customer_id": "SELF",
+      "authorized": true,
+      "expires_on": "2027-10-11",
+      "contact": "",
+      "approved_ips": []
+    },
+    {
+      "domain": "365asli.net",
+      "customer_id": "SELF",
+      "authorized": true,
+      "expires_on": "2027-10-11",
+      "contact": "",
+      "approved_ips": []
+    },
+    {
+      "domain": "365vip.bar",
+      "customer_id": "SELF",
+      "authorized": true,
+      "expires_on": "2027-10-11",
+      "contact": "",
+      "approved_ips": []
+    },
+    {
+      "domain": "a2.dr77.com",
+      "customer_id": "SELF",
+      "authorized": true,
+      "expires_on": "2027-10-11",
+      "contact": "",
+      "approved_ips": []
+    },
+    {
+      "domain": "sp1konin.pl",
+      "customer_id": "SELF",
+      "authorized": true,
+      "expires_on": "2027-10-11",
+      "contact": "",
+      "approved_ips": []
+    },
+    {
+      "domain": "smalsa.sch.id",
+      "customer_id": "SELF",
+      "authorized": true,
+      "expires_on": "2027-10-11",
+      "contact": "",
+      "approved_ips": []
+    },
+    {
+      "domain": "schbuild-develop.com",
+      "customer_id": "SELF",
+      "authorized": true,
+      "expires_on": "2027-10-11",
+      "contact": "",
+      "approved_ips": []
+    },
+    {
+      "domain": "ge-mon.herner.schule",
+      "customer_id": "SELF",
+      "authorized": true,
+      "expires_on": "2027-10-11",
+      "contact": "",
+      "approved_ips": []
+    },
+    {
+      "domain": "zsstrzegom.pl",
+      "customer_id": "SELF",
+      "authorized": true,
+      "expires_on": "2027-10-11",
+      "contact": "",
+      "approved_ips": []
+    },
+    {
+      "domain": "slfegate.com",
+      "customer_id": "SELF",
+      "authorized": true,
+      "expires_on": "2027-10-11",
+      "contact": "",
+      "approved_ips": []
+    },
+    {
+      "domain": "binzomah.com",
+      "customer_id": "SELF",
+      "authorized": true,
+      "expires_on": "2027-10-11",
+      "contact": "",
+      "approved_ips": []
+    },
+    {
+      "domain": "365d.pro",
+      "customer_id": "SELF",
+      "authorized": true,
+      "expires_on": "2027-10-11",
+      "contact": "",
+      "approved_ips": []
+    },
+    {
+      "domain": "pspmakosy.pl",
+      "customer_id": "SELF",
+      "authorized": true,
+      "expires_on": "2027-10-11",
+      "contact": "",
+      "approved_ips": []
+    },
+    {
+      "domain": "monstudi.com",
+      "customer_id": "SELF",
+      "authorized": true,
+      "expires_on": "2027-10-11",
+      "contact": "",
+      "approved_ips": []
+    },
+    {
+      "domain": "prochemi.it",
+      "customer_id": "SELF",
+      "authorized": true,
+      "expires_on": "2027-10-11",
+      "contact": "",
+      "approved_ips": []
+    },
+    {
+      "domain": "bwar.co.uk",
+      "customer_id": "SELF",
+      "authorized": true,
+      "expires_on": "2027-10-11",
+      "contact": "",
+      "approved_ips": []
+    },
+    {
+      "domain": "sarabanda.it",
+      "customer_id": "SELF",
+      "authorized": true,
+      "expires_on": "2027-10-11",
+      "contact": "",
+      "approved_ips": []
+    },
+    {
+      "domain": "stjoseph.mu",
+      "customer_id": "SELF",
+      "authorized": true,
+      "expires_on": "2027-10-11",
+      "contact": "",
+      "approved_ips": []
+    },
+    {
+      "domain": "smkpancabhakti.id",
+      "customer_id": "SELF",
+      "authorized": true,
+      "expires_on": "2027-10-11",
+      "contact": "",
+      "approved_ips": []
+    },
+    {
+      "domain": "schoolmaster.co.ke",
+      "customer_id": "SELF",
+      "authorized": true,
+      "expires_on": "2027-10-11",
+      "contact": "",
+      "approved_ips": []
+    },
+    {
+      "domain": "lpslions.org",
+      "customer_id": "SELF",
+      "authorized": true,
+      "expires_on": "2027-10-11",
+      "contact": "",
+      "approved_ips": []
+    },
+    {
+      "domain": "ulsan.es.kr",
+      "customer_id": "SELF",
+      "authorized": true,
+      "expires_on": "2027-10-11",
+      "contact": "",
+      "approved_ips": []
+    },
+    {
+      "domain": "maegis.com",
+      "customer_id": "SELF",
+      "authorized": true,
+      "expires_on": "2027-10-11",
+      "contact": "",
+      "approved_ips": []
+    },
+    {
+      "domain": "365i.tech",
+      "customer_id": "SELF",
+      "authorized": true,
+      "expires_on": "2027-10-11",
+      "contact": "",
+      "approved_ips": []
+    },
+    {
+      "domain": "gahyun.icees.kr",
+      "customer_id": "SELF",
+      "authorized": true,
+      "expires_on": "2027-10-11",
+      "contact": "",
+      "approved_ips": []
+    },
+    {
+      "domain": "psp1jl.pl",
+      "customer_id": "SELF",
+      "authorized": true,
+      "expires_on": "2027-10-11",
+      "contact": "",
+      "approved_ips": []
+    },
+    {
+      "domain": "ghschools.org",
+      "customer_id": "SELF",
+      "authorized": true,
+      "expires_on": "2027-10-11",
+      "contact": "",
+      "approved_ips": []
+    },
+    {
+      "domain": "semyung.sen.es.kr",
+      "customer_id": "SELF",
+      "authorized": true,
+      "expires_on": "2027-10-11",
+      "contact": "",
+      "approved_ips": []
+    },
+    {
+      "domain": "smansev.sch.id",
+      "customer_id": "SELF",
+      "authorized": true,
+      "expires_on": "2027-10-11",
+      "contact": "",
+      "approved_ips": []
+    },
+    {
+      "domain": "artisanale-brewing.com",
+      "customer_id": "SELF",
+      "authorized": true,
+      "expires_on": "2027-10-11",
+      "contact": "",
+      "approved_ips": []
+    },
+    {
+      "domain": "zenithcodes.com",
+      "customer_id": "SELF",
+      "authorized": true,
+      "expires_on": "2027-10-11",
+      "contact": "",
+      "approved_ips": []
+    },
+    {
+      "domain": "mtsn1kabmalang.sch.id",
+      "customer_id": "SELF",
+      "authorized": true,
+      "expires_on": "2027-10-11",
+      "contact": "",
+      "approved_ips": []
+    },
+    {
+      "domain": "pomelodigital.in",
+      "customer_id": "SELF",
+      "authorized": true,
+      "expires_on": "2027-10-11",
+      "contact": "",
+      "approved_ips": []
+    },
+    {
+      "domain": "accbanquyen.vn",
+      "customer_id": "SELF",
+      "authorized": true,
+      "expires_on": "2027-10-11",
+      "contact": "",
+      "approved_ips": []
+    },
+    {
+      "domain": "egresados.xoc.uam.mx",
+      "customer_id": "SELF",
+      "authorized": true,
+      "expires_on": "2027-10-11",
+      "contact": "",
+      "approved_ips": []
+    },
+    {
+      "domain": "akfarpim.ac.id",
+      "customer_id": "SELF",
+      "authorized": true,
+      "expires_on": "2027-10-11",
+      "contact": "",
+      "approved_ips": []
+    },
+    {
+      "domain": "cruzrojabogota.org.co",
+      "customer_id": "SELF",
+      "authorized": true,
+      "expires_on": "2027-10-11",
+      "contact": "",
+      "approved_ips": []
+    },
+    {
+      "domain": "justenergy.co.za",
+      "customer_id": "SELF",
+      "authorized": true,
+      "expires_on": "2027-10-11",
+      "contact": "",
+      "approved_ips": []
+    },
+    {
+      "domain": "urszulanki.rybnik.pl",
+      "customer_id": "SELF",
+      "authorized": true,
+      "expires_on": "2027-10-11",
+      "contact": "",
+      "approved_ips": []
+    },
+    {
+      "domain": "discoveryfl.org",
+      "customer_id": "SELF",
+      "authorized": true,
+      "expires_on": "2027-10-11",
+      "contact": "",
+      "approved_ips": []
+    },
+    {
+      "domain": "glit.ro",
+      "customer_id": "SELF",
+      "authorized": true,
+      "expires_on": "2027-10-11",
+      "contact": "",
+      "approved_ips": []
+    },
+    {
+      "domain": "gmws.org",
+      "customer_id": "SELF",
+      "authorized": true,
+      "expires_on": "2027-10-11",
+      "contact": "",
+      "approved_ips": []
+    },
+    {
+      "domain": "bac-calipage.com",
+      "customer_id": "SELF",
+      "authorized": true,
+      "expires_on": "2027-10-11",
+      "contact": "",
+      "approved_ips": []
+    },
+    {
+      "domain": "svzskladno.eu",
+      "customer_id": "SELF",
+      "authorized": true,
+      "expires_on": "2027-10-11",
+      "contact": "",
+      "approved_ips": []
+    },
+    {
+      "domain": "consorcioapiaexe.com.br",
+      "customer_id": "SELF",
+      "authorized": true,
+      "expires_on": "2027-10-11",
+      "contact": "",
+      "approved_ips": []
+    },
+    {
+      "domain": "spmachocice.pl",
+      "customer_id": "SELF",
+      "authorized": true,
+      "expires_on": "2027-10-11",
+      "contact": "",
+      "approved_ips": []
+    },
+    {
+      "domain": "digitalskillsa.com",
+      "customer_id": "SELF",
+      "authorized": true,
+      "expires_on": "2027-10-11",
+      "contact": "",
+      "approved_ips": []
+    },
+    {
+      "domain": "icl.org.uk",
+      "customer_id": "SELF",
+      "authorized": true,
+      "expires_on": "2027-10-11",
+      "contact": "",
+      "approved_ips": []
+    },
+    {
+      "domain": "pracowniamkd.com",
+      "customer_id": "SELF",
+      "authorized": true,
+      "expires_on": "2027-10-11",
+      "contact": "",
+      "approved_ips": []
+    },
+    {
+      "domain": "cccacademy.org",
+      "customer_id": "SELF",
+      "authorized": true,
+      "expires_on": "2027-10-11",
+      "contact": "",
+      "approved_ips": []
+    },
+    {
+      "domain": "minciencia.gob.cl",
+      "customer_id": "SELF",
+      "authorized": true,
+      "expires_on": "2027-10-11",
+      "contact": "",
+      "approved_ips": []
+    },
+    {
+      "domain": "sman1kundur.sch.id",
+      "customer_id": "SELF",
+      "authorized": true,
+      "expires_on": "2027-10-11",
+      "contact": "",
+      "approved_ips": []
+    },
+    {
+      "domain": "halicronbank.com",
+      "customer_id": "SELF",
+      "authorized": true,
+      "expires_on": "2027-10-11",
+      "contact": "",
+      "approved_ips": []
+    },
+    {
+      "domain": "fastriver.eu",
+      "customer_id": "SELF",
+      "authorized": true,
+      "expires_on": "2027-10-11",
+      "contact": "",
+      "approved_ips": []
+    },
+    {
+      "domain": "gnspadmon.com.mx",
+      "customer_id": "SELF",
+      "authorized": true,
+      "expires_on": "2027-10-11",
+      "contact": "",
+      "approved_ips": []
+    },
+    {
+      "domain": "arayabriones.cl",
+      "customer_id": "SELF",
+      "authorized": true,
+      "expires_on": "2027-10-11",
+      "contact": "",
+      "approved_ips": []
+    },
+    {
+      "domain": "vip365.org",
+      "customer_id": "SELF",
+      "authorized": true,
+      "expires_on": "2027-10-11",
+      "contact": "",
+      "approved_ips": []
+    },
+    {
+      "domain": "stud0.uniza.sk",
+      "customer_id": "SELF",
+      "authorized": true,
+      "expires_on": "2027-10-11",
+      "contact": "",
+      "approved_ips": []
+    },
+    {
+      "domain": "mdwinc.co.za",
+      "customer_id": "SELF",
+      "authorized": true,
+      "expires_on": "2027-10-11",
+      "contact": "",
+      "approved_ips": []
+    },
+    {
+      "domain": "icebrasil.com.br",
+      "customer_id": "SELF",
+      "authorized": true,
+      "expires_on": "2027-10-11",
+      "contact": "",
+      "approved_ips": []
+    },
+    {
+      "domain": "forbes.vn",
+      "customer_id": "SELF",
+      "authorized": true,
+      "expires_on": "2027-10-11",
+      "contact": "",
+      "approved_ips": []
+    },
+    {
+      "domain": "splusowko.pl",
+      "customer_id": "SELF",
+      "authorized": true,
+      "expires_on": "2027-10-11",
+      "contact": "",
+      "approved_ips": []
+    },
+    {
+      "domain": "ygja.es.jne.kr",
+      "customer_id": "SELF",
+      "authorized": true,
+      "expires_on": "2027-10-11",
+      "contact": "",
+      "approved_ips": []
+    },
+    {
+      "domain": "chinattirealty.com",
+      "customer_id": "SELF",
+      "authorized": true,
+      "expires_on": "2027-10-11",
+      "contact": "",
+      "approved_ips": []
+    },
+    {
+      "domain": "is.newton.university",
+      "customer_id": "SELF",
+      "authorized": true,
+      "expires_on": "2027-10-11",
+      "contact": "",
+      "approved_ips": []
+    },
+    {
+      "domain": "pathwayschools.ac.zw",
+      "customer_id": "SELF",
+      "authorized": true,
+      "expires_on": "2027-10-11",
+      "contact": "",
+      "approved_ips": []
+    },
+    {
+      "domain": "denalicpa.com",
+      "customer_id": "SELF",
+      "authorized": true,
+      "expires_on": "2027-10-11",
+      "contact": "",
+      "approved_ips": []
+    },
+    {
+      "domain": "rrps.org",
+      "customer_id": "SELF",
+      "authorized": true,
+      "expires_on": "2027-10-11",
+      "contact": "",
+      "approved_ips": []
+    },
+    {
+      "domain": "sp9.malbork.pl",
+      "customer_id": "SELF",
+      "authorized": true,
+      "expires_on": "2027-10-11",
+      "contact": "",
+      "approved_ips": []
+    },
+    {
+      "domain": "athens-213.org",
+      "customer_id": "SELF",
+      "authorized": true,
+      "expires_on": "2027-10-11",
+      "contact": "",
+      "approved_ips": []
+    },
+    {
+      "domain": "goirish.net",
+      "customer_id": "SELF",
+      "authorized": true,
+      "expires_on": "2027-10-11",
+      "contact": "",
+      "approved_ips": []
+    },
+    {
+      "domain": "assistemoi.re",
+      "customer_id": "SELF",
+      "authorized": true,
+      "expires_on": "2027-10-11",
+      "contact": "",
+      "approved_ips": []
+    },
+    {
+      "domain": "hectorpeterson.org",
+      "customer_id": "SELF",
+      "authorized": true,
+      "expires_on": "2027-10-11",
+      "contact": "",
+      "approved_ips": []
+    },
+    {
+      "domain": "uema.br",
+      "customer_id": "SELF",
+      "authorized": true,
+      "expires_on": "2027-10-11",
+      "contact": "",
+      "approved_ips": []
+    },
+    {
+      "domain": "aeazeitao.pt",
+      "customer_id": "SELF",
+      "authorized": true,
+      "expires_on": "2027-10-11",
+      "contact": "",
+      "approved_ips": []
+    },
+    {
+      "domain": "notdinosaurs.com",
+      "customer_id": "SELF",
+      "authorized": true,
+      "expires_on": "2027-10-11",
+      "contact": "",
+      "approved_ips": []
+    },
+    {
+      "domain": "hbb.lv",
+      "customer_id": "SELF",
+      "authorized": true,
+      "expires_on": "2027-10-11",
+      "contact": "",
+      "approved_ips": []
+    },
+    {
+      "domain": "alfitrahbangalore.com",
+      "customer_id": "SELF",
+      "authorized": true,
+      "expires_on": "2027-10-11",
+      "contact": "",
+      "approved_ips": []
+    },
+    {
+      "domain": "amtaar.com",
+      "customer_id": "SELF",
+      "authorized": true,
+      "expires_on": "2027-10-11",
+      "contact": "",
+      "approved_ips": []
+    },
+    {
+      "domain": "rimc.ind.in",
+      "customer_id": "SELF",
+      "authorized": true,
+      "expires_on": "2027-10-11",
+      "contact": "",
+      "approved_ips": []
+    },
+    {
+      "domain": "hotelka.eu",
+      "customer_id": "SELF",
+      "authorized": true,
+      "expires_on": "2027-10-11",
+      "contact": "",
+      "approved_ips": []
+    },
+    {
+      "domain": "365key.tech",
+      "customer_id": "SELF",
+      "authorized": true,
+      "expires_on": "2027-10-11",
+      "contact": "",
+      "approved_ips": []
+    },
+    {
+      "domain": "iesamaura.org",
+      "customer_id": "SELF",
+      "authorized": true,
+      "expires_on": "2027-10-11",
+      "contact": "",
+      "approved_ips": []
+    },
+    {
+      "domain": "online.thineth.lk",
+      "customer_id": "SELF",
+      "authorized": true,
+      "expires_on": "2027-10-11",
+      "contact": "",
+      "approved_ips": []
+    },
+    {
+      "domain": "ms.dcu.ac.kr",
+      "customer_id": "SELF",
+      "authorized": true,
+      "expires_on": "2027-10-11",
+      "contact": "",
+      "approved_ips": []
+    },
+    {
+      "domain": "consolidglobal.com",
+      "customer_id": "SELF",
+      "authorized": true,
+      "expires_on": "2027-10-11",
+      "contact": "",
+      "approved_ips": []
+    },
+    {
+      "domain": "falconschool.ac.cy",
+      "customer_id": "SELF",
+      "authorized": true,
+      "expires_on": "2027-10-11",
+      "contact": "",
+      "approved_ips": []
+    },
+    {
+      "domain": "casarobertomarinho.org.br",
+      "customer_id": "SELF",
+      "authorized": true,
+      "expires_on": "2027-10-11",
+      "contact": "",
+      "approved_ips": []
+    },
+    {
+      "domain": "nsb.gov.kw",
+      "customer_id": "SELF",
+      "authorized": true,
+      "expires_on": "2027-10-11",
+      "contact": "",
+      "approved_ips": []
+    },
+    {
+      "domain": "kaascorp.com",
+      "customer_id": "SELF",
+      "authorized": true,
+      "expires_on": "2027-10-11",
+      "contact": "",
+      "approved_ips": []
+    },
+    {
+      "domain": "sp1bytow.pl",
+      "customer_id": "SELF",
+      "authorized": true,
+      "expires_on": "2027-10-11",
+      "contact": "",
+      "approved_ips": []
+    },
+    {
+      "domain": "qmail.cat",
+      "customer_id": "SELF",
+      "authorized": true,
+      "expires_on": "2027-10-11",
+      "contact": "",
+      "approved_ips": []
+    },
+    {
+      "domain": "grouperenaissance.be",
+      "customer_id": "SELF",
+      "authorized": true,
+      "expires_on": "2027-10-11",
+      "contact": "",
+      "approved_ips": []
+    },
+    {
+      "domain": "go-vcs.com",
+      "customer_id": "SELF",
+      "authorized": true,
+      "expires_on": "2027-10-11",
+      "contact": "",
+      "approved_ips": []
+    },
+    {
+      "domain": "blockoville.com",
+      "customer_id": "SELF",
+      "authorized": true,
+      "expires_on": "2027-10-11",
+      "contact": "",
+      "approved_ips": []
+    },
+    {
+      "domain": "boostcallcenter.com",
+      "customer_id": "SELF",
+      "authorized": true,
+      "expires_on": "2027-10-11",
+      "contact": "",
+      "approved_ips": []
+    },
+    {
+      "domain": "4d-eng.eu",
+      "customer_id": "SELF",
+      "authorized": true,
+      "expires_on": "2027-10-11",
+      "contact": "",
+      "approved_ips": []
+    },
+    {
+      "domain": "portalimpacto.com.br",
+      "customer_id": "SELF",
+      "authorized": true,
+      "expires_on": "2027-10-11",
+      "contact": "",
+      "approved_ips": []
+    },
+    {
+      "domain": "nyrentcars.com",
+      "customer_id": "SELF",
+      "authorized": true,
+      "expires_on": "2027-10-11",
+      "contact": "",
+      "approved_ips": []
+    },
+    {
+      "domain": "imdekomateriales.com",
+      "customer_id": "SELF",
+      "authorized": true,
+      "expires_on": "2027-10-11",
+      "contact": "",
+      "approved_ips": []
+    },
+    {
+      "domain": "cjspicey.store",
+      "customer_id": "SELF",
+      "authorized": true,
+      "expires_on": "2027-10-11",
+      "contact": "",
+      "approved_ips": []
+    }
+  ]
+}

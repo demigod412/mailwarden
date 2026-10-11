@@ -1,0 +1,14 @@
+{
+  "domain": "example.com",
+  "require_tls": true,
+  "require_auth": true,
+  "allowed_senders": [
+    "example.com"
+  ],
+  "authorized_ips": [
+    "203.0.113.0/28"
+  ],
+  "collected_at": "2026-01-15T12:00:00Z",
+  "collected_by": "it-admin@example.com",
+  "notes": "Exported from Admin console > Apps > Google Workspace > Gmail > Routing > SMTP relay service"
+}

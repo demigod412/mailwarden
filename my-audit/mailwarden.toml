@@ -1,0 +1,18 @@
+# mailwarden.toml (all keys optional)
+output_dir = "mailwarden-output"
+log_level = "INFO"
+
+[dns]
+# How long to wait per DNS query before giving up. Raised above the library
+# default (4.0s) because corporate networks, VPNs and some antivirus tools
+# add enough latency to cause false timeouts ("LifetimeTimeout" warnings) at
+# the default value, especially on Windows.
+timeout = 8.0
+dkim_selectors = ["google"]
+# Explicit public resolvers, used instead of your system's default DNS server.
+# Helpful if your normal resolver is slow, overloaded, or blocked by a
+# firewall. Comment this out to use your system's default resolver instead.
+nameservers = ["1.1.1.1", "8.8.8.8"]
+
+[api]
+lookback_days = 30

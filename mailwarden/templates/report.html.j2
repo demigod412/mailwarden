@@ -1,0 +1,428 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta http-equiv="Content-Security-Policy" content="default-src 'none'; style-src 'unsafe-inline'; script-src 'unsafe-inline'; img-src data:">
+<meta name="color-scheme" content="light dark">
+<title>Mailwarden report: {{ scope }}</title>
+<style>
+:root{
+  --paper:#F2F4F7; --panel:#FFFFFF; --ink:#1A2230; --muted:#5A6577; --line:#D9DEE6;
+  --blue:#2646A8; --blue-soft:#E4EAFB;
+  --crit:#B3261E; --high:#B8500F; --med:#8F6A00; --low:#3F6EA5; --info:#667085; --ok:#2B7A4B;
+  --crit-bg:#FBE6E4; --high-bg:#FBEBDD; --med-bg:#FAF0CF; --low-bg:#E3EDF8; --info-bg:#ECEFF3; --ok-bg:#E1F2E8;
+  --serif:"Iowan Old Style","Palatino Linotype",Palatino,Georgia,serif;
+  --sans:"Segoe UI",system-ui,-apple-system,"Helvetica Neue",Arial,sans-serif;
+  --mono:ui-monospace,"SF Mono",Menlo,Consolas,monospace;
+}
+:root[data-theme="dark"]{
+  --paper:#0E131B; --panel:#161D28; --ink:#E7EBF1; --muted:#9BA6B7; --line:#2A3445;
+  --blue:#93A9FF; --blue-soft:#1E2A52;
+  --crit:#FF8A80; --high:#FFA566; --med:#F1C75B; --low:#8DB7EA; --info:#9BA6B7; --ok:#6FD39A;
+  --crit-bg:#3A1C1A; --high-bg:#392414; --med-bg:#35290B; --low-bg:#172A40; --info-bg:#1E2633; --ok-bg:#15301F;
+}
+@media (prefers-color-scheme:dark){
+  :root:not([data-theme="light"]){
+    --paper:#0E131B; --panel:#161D28; --ink:#E7EBF1; --muted:#9BA6B7; --line:#2A3445;
+    --blue:#93A9FF; --blue-soft:#1E2A52;
+    --crit:#FF8A80; --high:#FFA566; --med:#F1C75B; --low:#8DB7EA; --info:#9BA6B7; --ok:#6FD39A;
+    --crit-bg:#3A1C1A; --high-bg:#392414; --med-bg:#35290B; --low-bg:#172A40; --info-bg:#1E2633; --ok-bg:#15301F;
+  }
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth;scroll-padding-top:5.5rem}
+body{margin:0;background:var(--paper);color:var(--ink);font:15px/1.55 var(--sans)}
+a{color:var(--blue)}
+:focus-visible{outline:2px solid var(--blue);outline-offset:2px;border-radius:4px}
+.hatch{background-image:repeating-linear-gradient(135deg,transparent 0 5px,color-mix(in srgb,var(--info) 35%,transparent) 5px 6px)}
+
+/* top bar */
+.top{position:sticky;top:0;z-index:5;background:var(--panel);border-bottom:1px solid var(--line);
+  display:flex;flex-wrap:wrap;gap:.75rem 1.25rem;align-items:center;padding:.65rem 1.25rem}
+.brand{font:700 1.3rem var(--serif);letter-spacing:.01em;margin-right:.25rem}
+.brand small{font:400 .8rem var(--sans);color:var(--muted);margin-left:.5rem}
+.search{flex:1 1 220px;max-width:340px;padding:.45rem .7rem;border:1px solid var(--line);border-radius:8px;
+  background:var(--paper);color:var(--ink);font:inherit}
+.chips{display:flex;flex-wrap:wrap;gap:.35rem}
+.chip{border:1px solid var(--line);background:var(--panel);color:var(--ink);padding:.25rem .65rem;border-radius:999px;
+  font:600 .8rem var(--sans);cursor:pointer}
+.chip[aria-pressed="true"]{background:var(--blue);border-color:var(--blue);color:#fff}
+:root[data-theme="dark"] .chip[aria-pressed="true"]{color:#0E131B}
+.btn{border:1px solid var(--line);background:var(--panel);color:var(--ink);padding:.3rem .7rem;border-radius:8px;font:inherit;font-size:.85rem;cursor:pointer}
+
+/* layout */
+.shell{display:grid;grid-template-columns:230px minmax(0,1fr);gap:1.5rem;max-width:1280px;margin:0 auto;padding:1.25rem}
+.rail{position:sticky;top:5rem;align-self:start;max-height:calc(100vh - 6rem);overflow:auto}
+.rail h2{font:600 .85rem var(--sans);color:var(--muted);margin:0 0 .5rem}
+.rail a{display:flex;align-items:center;gap:.6rem;padding:.45rem .5rem;border-radius:8px;text-decoration:none;color:var(--ink)}
+.rail a:hover{background:var(--blue-soft)}
+.rail .mini{width:30px;height:30px;flex:none}
+.rail .nm{overflow:hidden;text-overflow:ellipsis;white-space:nowrap;font-weight:600}
+main{min-width:0}
+h2.sec{font:700 1.25rem var(--serif);margin:2rem 0 .75rem}
+.panel{background:var(--panel);border:1px solid var(--line);border-radius:10px;padding:1rem 1.15rem}
+.note{border-left:4px solid var(--blue);background:var(--blue-soft);padding:.75rem 1rem;border-radius:0 8px 8px 0;margin:0 0 1rem}
+
+/* overview */
+.bar{display:flex;height:14px;border-radius:7px;overflow:hidden;background:var(--info-bg);margin:.6rem 0 .5rem}
+.bar i{display:block}
+.legend{display:flex;flex-wrap:wrap;gap:.4rem 1.1rem;font-size:.88rem}
+.legend b{font-variant-numeric:tabular-nums}
+.dot{display:inline-block;width:.7rem;height:.7rem;border-radius:50%;margin-right:.35rem;vertical-align:-1px}
+.s-CRITICAL{--c:var(--crit);--b:var(--crit-bg)} .s-HIGH{--c:var(--high);--b:var(--high-bg)}
+.s-MEDIUM{--c:var(--med);--b:var(--med-bg)} .s-LOW{--c:var(--low);--b:var(--low-bg)}
+.s-INFORMATIONAL{--c:var(--info);--b:var(--info-bg)} .s-NOT_ASSESSED{--c:var(--info);--b:var(--info-bg)}
+.pill{display:inline-block;padding:.05rem .55rem;border-radius:6px;background:var(--b);color:var(--c);font:700 .75rem var(--sans);white-space:nowrap}
+.pill.na{background-image:repeating-linear-gradient(135deg,transparent 0 4px,color-mix(in srgb,var(--info) 40%,transparent) 4px 5px)}
+.two{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:1rem}
+.fixlist{list-style:none;margin:.5rem 0 0;padding:0}
+.fixlist li{display:flex;gap:.6rem;align-items:baseline;padding:.4rem 0;border-top:1px solid var(--line)}
+.fixlist li:first-child{border-top:0}
+.fixlist .d{color:var(--muted);font-size:.85rem;margin-left:auto;white-space:nowrap}
+
+/* domain header + stamp */
+.dom{margin-top:2.5rem}
+.domhead{display:flex;gap:1.1rem;align-items:center;flex-wrap:wrap}
+.domhead h2{font:700 1.6rem var(--serif);margin:0}
+.domhead .cust{color:var(--muted);font-size:.9rem}
+.stamp{width:96px;height:96px;flex:none}
+.stamp .ring{fill:none;stroke:var(--c);stroke-width:3}
+.stamp .ring2{fill:none;stroke:var(--c);stroke-width:1;stroke-dasharray:2 3}
+.stamp text{fill:var(--c);text-anchor:middle}
+.stamp .n{font:700 30px var(--serif)} .stamp .g{font:600 11px var(--sans);letter-spacing:.04em}
+.stamp .wave{fill:none;stroke:var(--c);stroke-width:2;opacity:.55}
+.g-a{--c:var(--ok)} .g-b{--c:var(--low)} .g-c{--c:var(--med)} .g-d{--c:var(--high)} .g-f{--c:var(--crit)} .g-partial{--c:var(--info)}
+.cov{display:flex;flex-wrap:wrap;gap:.35rem;margin-top:.7rem}
+.cov span{font-size:.8rem;padding:.12rem .6rem;border-radius:6px;border:1px solid var(--line)}
+.cov .yes{background:var(--ok-bg);color:var(--ok);border-color:transparent;font-weight:600}
+.cov .warn{background:var(--crit-bg);color:var(--crit);border-color:transparent;font-weight:700}
+.cov .no{color:var(--muted)}
+h3.sub{font:700 1.05rem var(--serif);margin:1.5rem 0 .6rem}
+
+/* relay path card */
+.path{display:grid;grid-template-columns:minmax(0,1.25fr) minmax(0,1fr);gap:1.25rem}
+@media(max-width:860px){.shell{grid-template-columns:1fr}.rail{display:none}.path{grid-template-columns:1fr}}
+.gates{display:grid;grid-template-columns:repeat(auto-fit,minmax(130px,1fr));gap:.6rem}
+.gate{border:1px solid var(--line);border-radius:8px;padding:.6rem .7rem}
+.gate .k{font-size:.8rem;color:var(--muted)}
+.gate .v{font-weight:700;margin-top:.1rem}
+.gate.ok{border-color:transparent;background:var(--ok-bg)} .gate.ok .v{color:var(--ok)}
+.gate.bad{border-color:transparent;background:var(--crit-bg)} .gate.bad .v{color:var(--crit)}
+.gate.unknown{border-style:dashed}
+.ladder{display:flex;margin-top:.75rem;border:1px solid var(--line);border-radius:8px;overflow:hidden}
+.ladder div{flex:1;padding:.45rem .5rem;text-align:center;font-size:.8rem;color:var(--muted);border-left:1px solid var(--line)}
+.ladder div:first-child{border-left:0}
+.ladder .on{font-weight:700;color:#fff;background:var(--c)}
+:root[data-theme="dark"] .ladder .on{color:#0E131B}
+.l-not_established{--c:var(--ok)} .l-suspected{--c:var(--high)} .l-confirmed{--c:var(--crit)}
+.verdict-na{margin-top:.75rem;padding:.55rem .75rem;border-radius:8px;border:1px dashed var(--info);font-weight:600;color:var(--muted)}
+.kv{margin:0;font-size:.88rem}
+.kv dt{color:var(--muted);margin-top:.5rem} .kv dd{margin:0}
+.why{margin-top:.75rem;font-size:.9rem}
+
+/* findings */
+.finding{background:var(--panel);border:1px solid var(--line);border-left:5px solid var(--c);border-radius:8px;margin-bottom:.5rem}
+.finding summary{list-style:none;display:flex;gap:.7rem;align-items:baseline;flex-wrap:wrap;padding:.6rem .85rem;cursor:pointer}
+.finding summary::-webkit-details-marker{display:none}
+.finding summary::before{content:"\25B8";color:var(--muted);transition:transform .12s}
+.finding[open] summary::before{transform:rotate(90deg)}
+.finding .t{font-weight:600;flex:1 1 320px}
+.finding .meta{color:var(--muted);font-size:.8rem}
+.finding .body{padding:0 .85rem .85rem 2rem;font-size:.92rem}
+.finding .body p{margin:.4rem 0}
+.finding pre{background:var(--paper);border:1px solid var(--line);border-radius:6px;padding:.6rem;overflow:auto;font:12px/1.5 var(--mono);margin:.4rem 0}
+code,.id{font-family:var(--mono);font-size:.82rem}
+.empty{color:var(--muted);padding:.75rem 0}
+
+/* tabs (spoofing vs relay exploitability) */
+.tabs{display:flex;flex-wrap:wrap;gap:.4rem;margin:1rem 0 .25rem;border-bottom:1px solid var(--line)}
+.tab{border:1px solid var(--line);border-bottom:0;background:var(--panel);color:var(--muted);
+  padding:.5rem .95rem;border-radius:8px 8px 0 0;font:600 .9rem var(--sans);cursor:pointer;margin-bottom:-1px}
+.tab[aria-selected="true"]{color:var(--ink);background:var(--panel);border-color:var(--line);border-bottom:2px solid var(--blue)}
+.tab .n{font-variant-numeric:tabular-nums;color:var(--muted);font-weight:700}
+.tabpanel[hidden]{display:none!important}
+.rtable{width:100%;border-collapse:collapse;font-size:.88rem}
+.rtable th{text-align:left;border-bottom:1px solid var(--line);padding:.4rem .5rem}
+.rtable td{padding:.4rem .5rem;border-bottom:1px solid var(--line);vertical-align:top}
+.rtable .mut{color:var(--muted)}
+.tag{display:inline-block;padding:.05rem .5rem;border-radius:6px;font:700 .72rem var(--sans);background:var(--info-bg);color:var(--info)}
+[hidden]{display:none!important}
+footer ul{padding-left:1.1rem}
+@media print{.top,.rail,.chips{display:none}.shell{display:block}.finding .body{display:block}.finding{break-inside:avoid}}
+@media (prefers-reduced-motion:reduce){*{transition:none!important;scroll-behavior:auto!important}}
+</style>
+</head>
+<body>
+{% macro pill(sev) %}<span class="pill s-{{ sev }}{% if sev == 'NOT_ASSESSED' %} na{% endif %}">{{ sev.replace('_',' ').title() }}</span>{% endmacro %}
+{% macro stamp(d, size) %}
+<svg class="stamp {{ d.stamp }}" viewBox="0 0 120 96" role="img" aria-label="Score {{ d.risk.total }} of 100, grade {{ d.risk.grade }}{% if not d.risk.complete %}, incomplete coverage{% endif %}"{% if size %} width="{{ size }}" height="{{ size }}"{% endif %}>
+  <circle class="ring" cx="48" cy="48" r="42"/><circle class="ring2" cx="48" cy="48" r="36"/>
+  <text class="n" x="48" y="55">{{ d.risk.total }}</text>
+  <text class="g" x="48" y="72">{% if d.risk.complete %}GRADE {{ d.risk.grade }}{% else %}PARTIAL{% endif %}</text>
+  <path class="wave" d="M94 34q6-7 12 0t12 0M94 48q6-7 12 0t12 0M94 62q6-7 12 0t12 0"/>
+</svg>
+{% endmacro %}
+
+<header class="top">
+  <div class="brand">Mailwarden<small>v{{ version }}</small></div>
+  <input class="search" id="q" type="search" placeholder="Search findings, e.g. DMARC or relay" aria-label="Search findings">
+  <div class="chips" id="sevchips" role="group" aria-label="Filter by severity">
+    {% for s in sev_order %}{% if totals[s] %}
+    <button class="chip" type="button" data-sev="{{ s }}" aria-pressed="false">{{ s.replace('_',' ').title() }} {{ totals[s] }}</button>
+    {% endif %}{% endfor %}
+  </div>
+  <button class="btn" id="expand" type="button">Expand all</button>
+  <button class="btn" id="theme" type="button" aria-label="Toggle dark mode">Theme</button>
+</header>
+
+<div class="shell">
+  <nav class="rail" aria-label="Domains">
+    <h2>Domains ({{ domains|length }})</h2>
+    {% for d in domains %}
+    <a href="#{{ d.anchor }}">{{ stamp(d, 30) }}<span class="nm">{{ d.domain }}</span></a>
+    {% endfor %}
+  </nav>
+
+  <main>
+    <p class="note"><strong>Read this first.</strong> A <em>suspected</em> verdict means the configuration would allow unauthorized sending. Only a matching Google audit event makes it <em>confirmed</em>. Anything <em>not assessed</em> (hatched) is unknown, not safe.</p>
+
+    <section aria-label="Overview" class="two">
+      <div class="panel">
+        <strong>{{ total_findings }} findings across {{ domains|length }} domain{{ '' if domains|length == 1 else 's' }}</strong>
+        <div class="bar" role="img" aria-label="Findings by severity">
+          {% for s in sev_order %}{% if totals[s] and s != 'INFORMATIONAL' %}<i class="s-{{ s }}" style="flex:{{ totals[s] }};background:var(--c)"></i>{% endif %}{% endfor %}
+        </div>
+        <div class="legend">
+          {% for s in sev_order %}{% if totals[s] %}<span class="s-{{ s }}"><span class="dot" style="background:var(--c)"></span>{{ s.replace('_',' ').title() }} <b>{{ totals[s] }}</b></span>{% endif %}{% endfor %}
+        </div>
+        <h3 class="sub" style="margin-top:1.1rem">Relay paths: unauthorized use</h3>
+        <div class="legend">
+          <span><span class="dot" style="background:var(--crit)"></span>Confirmed <b>{{ abuse.confirmed }}</b></span>
+          <span><span class="dot" style="background:var(--high)"></span>Suspected <b>{{ abuse.suspected }}</b></span>
+          <span><span class="dot" style="background:var(--ok)"></span>Not established <b>{{ abuse.not_established }}</b></span>
+          <span><span class="dot hatch" style="border:1px solid var(--info)"></span>Not assessed <b>{{ abuse.not_assessed }}</b></span>
+        </div>
+      </div>
+      <div class="panel">
+        <strong>Fix first</strong>{% if fix_first_total > fix_first|length %} <span class="meta" style="color:var(--muted)">(top {{ fix_first|length }} of {{ fix_first_total }})</span>{% endif %}
+        {% if fix_first %}
+        <ul class="fixlist">
+          {% for x in fix_first %}
+          <li class="s-{{ x.f.severity.value }}">{{ pill(x.f.severity.value) }}<a href="#{{ x.f.finding_id }}" data-open>{{ x.f.title }}</a><span class="d">{{ x.domain }}</span></li>
+          {% endfor %}
+        </ul>
+        {% else %}<p class="empty">No critical or high findings. Review the coverage notes before relying on this.</p>{% endif %}
+      </div>
+    </section>
+
+    <div class="tabs" id="risktabs" role="tablist" aria-label="Email risk views">
+      <button class="tab" role="tab" id="tab-spoof" aria-controls="panel-spoof" aria-selected="true">
+        Spoofing &amp; bulk sending <span class="n">{{ spoof_counts.high + spoof_counts.medium }}</span>
+      </button>
+      <button class="tab" role="tab" id="tab-exploit" aria-controls="panel-exploit" aria-selected="false">
+        SMTP relay exploitability <span class="n">{{ exploit_counts.high + exploit_counts.medium }}</span>
+      </button>
+    </div>
+
+    <section class="panel tabpanel" id="panel-spoof" role="tabpanel" aria-labelledby="tab-spoof"
+             aria-label="Spoofing and bulk-sending risk" style="margin-top:0;border-top-left-radius:0">
+      <strong>Domains that could be used to send bulk or phishing email right now</strong>
+      <p class="meta" style="margin:.3rem 0 .8rem">
+        This is about mail that only <em>claims</em> to be from a domain &mdash; no access to your
+        infrastructure needed, just SPF and DMARC being weak enough to let it through. (A separate
+        question from relaying <em>through</em> your own SMTP relay &mdash; see the next tab.)
+      </p>
+      <div class="legend" style="margin-bottom:.7rem">
+        <span class="s-CRITICAL"><span class="dot" style="background:var(--c)"></span>High risk <b>{{ spoof_counts.high }}</b></span>
+        <span class="s-MEDIUM"><span class="dot" style="background:var(--c)"></span>Medium <b>{{ spoof_counts.medium }}</b></span>
+        <span class="s-INFORMATIONAL"><span class="dot" style="background:var(--ok)"></span>Low (protected) <b>{{ spoof_counts.low }}</b></span>
+        {% if spoof_counts.unknown %}<span class="s-NOT_ASSESSED"><span class="dot" style="background:var(--c)"></span>Unknown <b>{{ spoof_counts.unknown }}</b></span>{% endif %}
+      </div>
+      {% if spoof_rows %}
+      <div style="overflow-x:auto">
+        <table class="rtable">
+          <thead><tr>
+            <th>Risk</th><th>Domain</th><th>DMARC</th><th>SPF</th><th>Why</th>
+          </tr></thead>
+          <tbody>
+          {% for r in spoof_rows %}
+          <tr class="spoof-row spoof-{{ r.risk }}">
+            <td><span class="pill {{ 'na' if r.risk == 'unknown' else '' }}" style="background:{{ {'high':'var(--crit-bg)','medium':'var(--high-bg)','low':'var(--ok-bg)','unknown':'var(--info-bg)'}[r.risk] }};color:{{ {'high':'var(--crit)','medium':'var(--high)','low':'var(--ok)','unknown':'var(--info)'}[r.risk] }}">{{ spoof_level_label[r.risk] }}</span></td>
+            <td><a href="#{{ domain_anchor[r.domain] }}">{{ r.domain }}</a></td>
+            <td>{{ r.dmarc_level.replace('_',' ') }}</td>
+            <td>{{ r.spf_level.replace('_',' ') }}</td>
+            <td class="mut">{{ r.why }}</td>
+          </tr>
+          {% endfor %}
+          </tbody>
+        </table>
+      </div>
+      <p class="meta" style="margin-top:.6rem">Also exported as <code>spoofing_risk.csv</code>, sorted worst-first, for filtering in a spreadsheet.</p>
+      {% else %}<p class="empty">No domains in this scan.</p>{% endif %}
+    </section>
+
+    <section class="panel tabpanel" id="panel-exploit" role="tabpanel" aria-labelledby="tab-exploit"
+             aria-label="SMTP relay exploitability" style="margin-top:0;border-top-left-radius:0" hidden>
+      <strong>Domains whose Google Workspace SMTP relay could be exploited to send from any IP</strong>
+      <p class="meta" style="margin:.3rem 0 .8rem">
+        A different question from spoofing: this is about relaying <em>through</em> a domain's own
+        Google Workspace SMTP relay (<code>smtp-relay.gmail.com</code>). The relay is exploitable when
+        it has <strong>no source-IP range restriction</strong> and does not require authentication &mdash;
+        then any host on the internet can send bulk mail through it. A <em>confirmed</em>/<em>suspected</em>
+        verdict uses administrator-exported relay settings; <em>needs evidence</em> is a public-DNS
+        screening only.
+      </p>
+      <div class="legend" style="margin-bottom:.7rem">
+        <span class="s-CRITICAL"><span class="dot" style="background:var(--c)"></span>High <b>{{ exploit_counts.high }}</b></span>
+        <span class="s-MEDIUM"><span class="dot" style="background:var(--c)"></span>Medium <b>{{ exploit_counts.medium }}</b></span>
+        <span class="s-INFORMATIONAL"><span class="dot" style="background:var(--ok)"></span>Low <b>{{ exploit_counts.low }}</b></span>
+        {% if exploit_counts.none %}<span class="s-INFORMATIONAL"><span class="dot" style="background:var(--ok)"></span>N/A <b>{{ exploit_counts.none }}</b></span>{% endif %}
+        {% if exploit_counts.unknown %}<span class="s-NOT_ASSESSED"><span class="dot" style="background:var(--c)"></span>Unknown <b>{{ exploit_counts.unknown }}</b></span>{% endif %}
+      </div>
+      {% if exploit_rows %}
+      <div style="overflow-x:auto">
+        <table class="rtable">
+          <thead><tr>
+            <th>Risk</th><th>Domain</th><th>Source IP restriction</th><th>Auth</th>
+            <th>Relay host</th><th>Verdict</th><th>Why</th>
+          </tr></thead>
+          <tbody>
+          {% for r in exploit_rows %}
+          <tr class="exploit-row exploit-{{ r.risk }}">
+            <td><span class="pill {{ 'na' if r.risk in ('unknown','none') else '' }}" style="background:{{ {'high':'var(--crit-bg)','medium':'var(--high-bg)','low':'var(--ok-bg)','none':'var(--ok-bg)','unknown':'var(--info-bg)'}[r.risk] }};color:{{ {'high':'var(--crit)','medium':'var(--high)','low':'var(--ok)','none':'var(--ok)','unknown':'var(--info)'}[r.risk] }}">{{ exploit_level_label[r.risk] }}</span></td>
+            <td><a href="#{{ domain_anchor[r.domain] }}">{{ r.domain }}</a></td>
+            <td>{% if r.ip_restriction == 'none' %}<span style="color:var(--crit);font-weight:600">None (any IP)</span>{% elif r.ip_restriction == 'restricted' %}Restricted{% else %}<span class="mut">Unknown</span>{% endif %}</td>
+            <td>{% if r.auth_required is true %}Required{% elif r.auth_required is false %}<span style="color:var(--crit);font-weight:600">Off</span>{% else %}<span class="mut">?</span>{% endif %}</td>
+            <td><code>{{ r.relay_host }}</code></td>
+            <td><span class="tag">{{ exploit_status_label[r.status] }}</span></td>
+            <td class="mut">{{ r.why }}</td>
+          </tr>
+          {% endfor %}
+          </tbody>
+        </table>
+      </div>
+      <p class="meta" style="margin-top:.6rem">Also exported as <code>relay_exploit.csv</code>, sorted worst-first. To turn a <em>needs evidence</em> row into a definite verdict, export the relay settings and re-scan with <code>--relay-evidence-dir</code>.</p>
+      {% else %}<p class="empty">No domains in this scan.</p>{% endif %}
+    </section>
+
+    {% for d in domains %}
+    <section class="dom" id="{{ d.anchor }}" aria-labelledby="h-{{ d.anchor }}">
+      <div class="domhead">
+        {{ stamp(d, none) }}
+        <div>
+          <h2 id="h-{{ d.anchor }}">{{ d.domain }}</h2>
+          <div class="cust">{% if d.customer_id %}Customer {{ d.customer_id }}{% else %}No authorization on file (public DNS checks only){% endif %}</div>
+        </div>
+      </div>
+      <div class="cov" aria-label="Coverage">
+        {% for c in d.coverage %}<span class="{{ c.cls }}" title="{{ c.title }}">{{ c.icon }}{{ c.text }}</span>{% endfor %}
+      </div>
+
+      <h3 class="sub">Relay paths</h3>
+      {% for pv in d.paths %}{% set p = pv.p %}
+      <div class="panel path" style="margin-bottom:.75rem">
+        <div>
+          <div class="gates">
+            {% for g in pv.gates %}<div class="gate {{ g.state }}"><div class="k">{{ g.name }}</div><div class="v">{{ g.text }}</div></div>{% endfor %}
+          </div>
+          {% set v = p.unauthorized_use_possible.value %}
+          {% if v == 'not_assessed' %}
+          <div class="verdict-na hatch">Not assessed. {{ p.why_not_confirmed }}</div>
+          {% else %}
+          <div class="ladder" role="img" aria-label="Unauthorized use verdict: {{ v.replace('_',' ') }}">
+            {% for key, label in [('not_established','Not established'),('suspected','Suspected'),('confirmed','Confirmed')] %}
+            <div class="{{ 'on l-' ~ key if v == key else '' }}">{{ label }}</div>
+            {% endfor %}
+          </div>
+          <p class="why"><strong>Why this verdict.</strong> {{ p.why_not_confirmed }}</p>
+          {% endif %}
+        </div>
+        <div>
+          <dl class="kv">
+            <dt>Exposure</dt><dd><span class="pill s-{{ {'HIGH':'HIGH','MEDIUM':'MEDIUM','LOW':'LOW','NONE':'INFORMATIONAL','NOT_ASSESSED':'NOT_ASSESSED'}[p.abuse_exposure.value] }}">{{ p.abuse_exposure.value.replace('_',' ').title() }}</span></dd>
+            <dt>What to do</dt><dd>{{ p.remediation }}</dd>
+            <dt>Evidence</dt><dd>{% if p.evidence_source %}<code>{{ p.evidence_source }}</code>{% if p.collected_by %}<br>Collected by {{ p.collected_by }}{% endif %}{% if p.collected_at %} on {{ p.collected_at }}{% endif %}{% else %}None supplied{% endif %}</dd>
+            {% if p.authorized_cidrs %}<dt>Authorized IP ranges</dt><dd><code>{{ p.authorized_cidrs|join(', ') }}</code></dd>{% endif %}
+            {% if p.coverage_gaps %}<dt>Coverage gaps</dt><dd>{{ p.coverage_gaps|join('; ') }}</dd>{% endif %}
+            <dt>Path ID</dt><dd class="id">{{ p.path_id }}</dd>
+          </dl>
+        </div>
+      </div>
+      {% else %}<p class="empty">No relay paths recorded for this domain.</p>{% endfor %}
+
+      <h3 class="sub">Findings ({{ d.findings|length }})</h3>
+      {% for f in d.findings %}
+      <details class="finding s-{{ f.severity.value }}" id="{{ f.finding_id }}" data-sev="{{ f.severity.value }}" data-text="{{ (f.title ~ ' ' ~ f.category.value ~ ' ' ~ f.remediation)|lower }}">
+        <summary>
+          {{ pill(f.severity.value) }}
+          <span class="t">{{ f.title }}</span>
+          <span class="meta">{{ f.category.value }} &middot; {{ f.confidence.value }} confidence{% if f.abuse_status.value in ('confirmed','suspected') %} &middot; abuse {{ f.abuse_status.value }}{% endif %}</span>
+        </summary>
+        <div class="body">
+          <p><strong>Why it matters.</strong> {{ f.business_impact }}</p>
+          <p><strong>What to do.</strong> {{ f.remediation }}</p>
+          <p class="meta">Detected by {{ f.detection_method }} &middot; <span class="id">{{ f.finding_id }}</span></p>
+          {% if f.evidence %}<details><summary class="meta" style="padding:.2rem 0">Evidence</summary><pre>{{ f.evidence|tojson_pretty }}</pre></details>{% endif %}
+        </div>
+      </details>
+      {% else %}<p class="empty">No findings recorded.</p>{% endfor %}
+      <p class="empty" id="none-{{ d.anchor }}" hidden>No findings match the current filters.</p>
+    </section>
+    {% endfor %}
+
+    <footer>
+      <h2 class="sec">Next steps</h2>
+      <ol>{% for n in next_steps %}<li>{{ n }}</li>{% endfor %}</ol>
+      <h2 class="sec">Method and limits</h2>
+      <ul>
+        <li>DNS checks read public records only. Workspace checks use the Admin SDK Reports API with the read-only scope <code>admin.reports.audit.readonly</code>.</li>
+        <li>The Reports API does not expose every SMTP relay setting, so relay analysis depends on settings exported by an administrator.</li>
+        <li>Relay verdicts are scoped to the authorized customer. Mailwarden never produces a cross-customer list of domains or paths that could be abused.</li>
+        <li>Credentials are never written to reports. A credential guard refuses to build the report if it finds credential-like material.</li>
+        <li>No findings does not mean secure. Check the coverage chips for each domain.</li>
+      </ul>
+      <p class="empty">Generated {{ generated_at }} &middot; scope: {{ scope }}{% if mode %} &middot; mode: {{ mode }}{% endif %}</p>
+    </footer>
+  </main>
+</div>
+
+<script>
+(function(){
+  var q=document.getElementById('q'), chips=[].slice.call(document.querySelectorAll('#sevchips .chip')),
+      rows=[].slice.call(document.querySelectorAll('.finding')), root=document.documentElement;
+  function apply(){
+    var on=chips.filter(function(c){return c.getAttribute('aria-pressed')==='true'}).map(function(c){return c.dataset.sev}),
+        t=q.value.trim().toLowerCase();
+    rows.forEach(function(r){
+      var ok=(!on.length||on.indexOf(r.dataset.sev)>-1)&&(!t||r.dataset.text.indexOf(t)>-1);
+      r.hidden=!ok;
+    });
+    [].forEach.call(document.querySelectorAll('.dom'),function(s){
+      var none=s.querySelector('[id^="none-"]'), any=s.querySelector('.finding:not([hidden])');
+      if(none) none.hidden=!!any||!s.querySelector('.finding');
+    });
+  }
+  q.addEventListener('input',apply);
+  chips.forEach(function(c){c.addEventListener('click',function(){
+    c.setAttribute('aria-pressed',c.getAttribute('aria-pressed')==='true'?'false':'true');apply();});});
+  var all=false, eb=document.getElementById('expand');
+  eb.addEventListener('click',function(){all=!all;rows.forEach(function(r){r.open=all});eb.textContent=all?'Collapse all':'Expand all';});
+  [].forEach.call(document.querySelectorAll('[data-open]'),function(a){a.addEventListener('click',function(){
+    var el=document.getElementById(a.getAttribute('href').slice(1)); if(el){el.hidden=false;el.open=true;}});});
+  document.getElementById('theme').addEventListener('click',function(){
+    var dark=root.dataset.theme?root.dataset.theme==='dark':matchMedia('(prefers-color-scheme: dark)').matches;
+    root.dataset.theme=dark?'light':'dark';});
+  var tabs=[].slice.call(document.querySelectorAll('#risktabs .tab'));
+  function selectTab(t){
+    tabs.forEach(function(x){
+      var on=x===t; x.setAttribute('aria-selected',on?'true':'false');
+      var panel=document.getElementById(x.getAttribute('aria-controls'));
+      if(panel) panel.hidden=!on;
+    });
+  }
+  tabs.forEach(function(t){t.addEventListener('click',function(){selectTab(t);});});
+})();
+</script>
+</body>
+</html>

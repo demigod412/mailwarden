@@ -1,0 +1,27 @@
+[build-system]
+requires = ["setuptools>=68"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "mailwarden"
+version = "0.2.5"
+description = "Customer-scoped email security and SMTP relay audit for Google Workspace"
+readme = "README.md"
+requires-python = ">=3.11"
+dependencies = ["dnspython>=2.4", "jinja2>=3.1"]
+
+[project.optional-dependencies]
+google = ["google-api-python-client>=2.100", "google-auth>=2.23", "google-auth-oauthlib>=1.1"]
+dev = ["pytest>=7.4"]
+
+[project.scripts]
+mailwarden = "mailwarden.cli:main"
+
+[tool.setuptools]
+packages = ["mailwarden"]
+
+[tool.setuptools.package-data]
+mailwarden = ["templates/*.j2"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]

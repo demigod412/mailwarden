@@ -1,0 +1,12 @@
+{
+  "domain": "secure.example.com",
+  "require_tls": true,
+  "require_auth": true,
+  "allowed_senders": ["secure.example.com"],
+  "authorized_ips": ["203.0.113.0/28"],
+  "ip_restriction_enabled": true,
+  "relay_host": "smtp-relay.gmail.com",
+  "collected_at": "2026-01-15T12:00:00Z",
+  "collected_by": "it-admin@secure.example.com",
+  "notes": "Locked down: TLS + SMTP AUTH required, and 'Only accept mail from the specified IP addresses' is ON with a tight range. Not exploitable from arbitrary IPs."
+}

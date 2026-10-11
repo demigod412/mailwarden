@@ -1,0 +1,12 @@
+{
+  "domain": "open-relay.example.com",
+  "require_tls": true,
+  "require_auth": false,
+  "allowed_senders": ["open-relay.example.com"],
+  "authorized_ips": [],
+  "ip_restriction_enabled": false,
+  "relay_host": "smtp-relay.gmail.com",
+  "collected_at": "2026-01-15T12:00:00Z",
+  "collected_by": "it-admin@open-relay.example.com",
+  "notes": "DANGER (illustration): 'Only accept mail from the specified IP addresses' is OFF (ip_restriction_enabled=false) AND SMTP authentication is not required. Any host on the internet can relay bulk mail through smtp-relay.gmail.com as this domain. Mailwarden flags this HIGH / exploitable from any IP."
+}
